@@ -4,45 +4,49 @@ import java.awt.*;
 
 public class Solution {
 
-    public class ListNode {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        Long integer1 = listNodeToNumber(l1);
+        Long integer2 = listNodeToNumber(l2);
 
-        int val;
-        ListNode next;
+        System.out.println(integer1);
+        System.out.println(integer2);
 
-        ListNode() {
-        }
+        Long num = integer1 + integer2;
 
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
+        return numberToListNode(num);
     }
 
-        public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-            Integer integer1 = listNodeToNumber(l1);
-            Integer integer2 = listNodeToNumber(l2);
+    private Long listNodeToNumber(ListNode l){
 
-            int num = integer1 + integer2;
-            numberToListNode(num);
+        String num = "";
 
+
+        while (l!=null){
+            num += l.val;
+            l = l.next;
         }
 
-        private Integer listNodeToNumber(ListNode l){
+        return Long.parseLong(new StringBuffer(num).reverse().toString());
+    }
 
+    private ListNode numberToListNode(Long num){
 
-        return 0;
+        ListNode listNode = new ListNode();
+
+        char[] chars=String.valueOf(num).toCharArray();
+        for (int j = 0; j < chars.length; j++) {
+
+            listNode.val = Character.getNumericValue(chars[j]);
+
+            if(j!=chars.length-1){
+                ListNode pre = new ListNode();
+                pre.next = listNode;
+                listNode = pre;
+            }
         }
 
-        private ListNode numberToListNode(Integer num){
-
-            ListNode listNode = new ListNode();
-
-
-            return listNode;
-        }
+        return listNode;
+    }
 
 }
+
