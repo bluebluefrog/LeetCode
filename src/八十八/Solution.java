@@ -9,7 +9,7 @@ public class Solution {
         if(n==0){
             return;
         }
-        int[] temp = new int[m + n];
+        int[] temp = new int[m+n];
 
         for (int i = 0; i < m; i++) {
             temp[i] = nums1[i];
@@ -19,9 +19,15 @@ public class Solution {
             temp[m + i] = nums2[i];
         }
 
-        Arrays.sort(temp);
+        for (int i = 0; i < m+n; i++) {
+            nums1[i]=temp[i];
+        }
 
-        nums1 = temp;
+        Arrays.sort(nums1);
+
+        for (int i = 0; i < nums1.length; i++) {
+            System.out.print(nums1[i]);
+        }
 
     }
 
